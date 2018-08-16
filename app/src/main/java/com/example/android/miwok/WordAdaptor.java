@@ -45,19 +45,20 @@ public class WordAdaptor extends ArrayAdapter<Word> {
         // set the text in TextView to the stored default word in the word item
         defaultText.setText(currentWord.getDefaultTranslation());
 
+        // find the ImageView by id
+        ImageView image = (ImageView) listItemView.findViewById(R.id.image);
+
         // check if the image resource is initialized
         if(currentWord.hasImage()) {
-            // find the ImageView by id
-            ImageView image = (ImageView) listItemView.findViewById(R.id.image);
+
             // set the image in the layout
             image.setImageResource(currentWord.getImageResourceID());
+            
             // make ImageView visible
             image.setVisibility(View.VISIBLE);
         }
 
         else {
-            // find the ImageView by id
-            ImageView image = (ImageView) listItemView.findViewById(R.id.image);
             // set the ImageView to gone
             image.setVisibility(View.GONE);
         }

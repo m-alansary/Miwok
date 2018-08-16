@@ -3,6 +3,7 @@ package com.example.android.miwok;
 import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +17,11 @@ import java.util.ArrayList;
 
 public class WordAdaptor extends ArrayAdapter<Word> {
 
-    public WordAdaptor (Activity context, ArrayList<Word> words) {
+    private int mColorResource;
+
+    public WordAdaptor (Activity context, ArrayList<Word> words, int colorRes) {
         super(context, 0, words);
+        mColorResource = colorRes;
     }
 
     @NonNull
@@ -53,7 +57,7 @@ public class WordAdaptor extends ArrayAdapter<Word> {
 
             // set the image in the layout
             image.setImageResource(currentWord.getImageResourceID());
-            
+
             // make ImageView visible
             image.setVisibility(View.VISIBLE);
         }
@@ -63,6 +67,11 @@ public class WordAdaptor extends ArrayAdapter<Word> {
             image.setVisibility(View.GONE);
         }
 
+        View list_member = listItemView.findViewById(R.id.list_member);
+
+        int color = ContextCompat.getColor(getContext(), mColorResource);
+
+        list_member.setBackgroundColor(color);
 
         return listItemView;
     }

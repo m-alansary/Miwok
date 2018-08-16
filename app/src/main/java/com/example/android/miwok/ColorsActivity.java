@@ -13,8 +13,10 @@ public class ColorsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.word_list);
 
+        // create word ArrayList
         ArrayList<Word> words = new ArrayList<Word>();
 
+        // initialize the word ArrayList to default word, miwok word, and image id
         words.add(new Word("red", "weṭeṭṭi", R.drawable.color_red));
         words.add(new Word("green", "chokokki", R.drawable.color_green));
         words.add(new Word("brown", "ṭakaakki", R.drawable.color_brown));
@@ -24,10 +26,13 @@ public class ColorsActivity extends AppCompatActivity {
         words.add(new Word("dusty yellow", "ṭopiisә", R.drawable.color_dusty_yellow));
         words.add(new Word("mustard yellow", "chiwiiṭә", R.drawable.color_mustard_yellow));
 
+        // create WordAdaptor
         WordAdaptor adaptor = new WordAdaptor(this, words);
 
+        // find the list view by it's id
         ListView listView = (ListView) findViewById(R.id.list);
 
+        // set the adaptor to the list view
         listView.setAdapter(adaptor);
     }
 }

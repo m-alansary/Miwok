@@ -13,8 +13,10 @@ public class PhrasesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.word_list);
 
+        // create word ArrayList
         ArrayList<Word> words = new ArrayList<Word>();
 
+        // initialize the word ArrayList to default word and miwok word
         words.add(new Word("Where are you going?", "minto wuksus"));
         words.add(new Word("What is your name?", "tinnә oyaase'nә"));
         words.add(new Word("My name is...", "oyaaset..."));
@@ -26,10 +28,13 @@ public class PhrasesActivity extends AppCompatActivity {
         words.add(new Word("Let’s go.", "yoowutis"));
         words.add(new Word("Come here.", "әnni'nem"));
 
+        // create WordAdaptor
         WordAdaptor adaptor = new WordAdaptor(this, words);
 
+        // find the list view by it's id
         ListView listView = (ListView) findViewById(R.id.list);
 
+        // set the adaptor to the list view
         listView.setAdapter(adaptor);
     }
 }

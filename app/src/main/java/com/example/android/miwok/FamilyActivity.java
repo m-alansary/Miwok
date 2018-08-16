@@ -13,8 +13,10 @@ public class FamilyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.word_list);
 
+        // create word ArrayList
         ArrayList<Word> words = new ArrayList<Word>();
 
+        // initialize the word ArrayList to default word, miwok word, and image id
         words.add(new Word("father", "әpә", R.drawable.family_father));
         words.add(new Word("mother", "әṭa", R.drawable.family_mother));
         words.add(new Word("son", "angsi", R.drawable.family_son));
@@ -26,10 +28,13 @@ public class FamilyActivity extends AppCompatActivity {
         words.add(new Word("grandmother", "ama", R.drawable.family_grandmother));
         words.add(new Word("grandfather", "paapa", R.drawable.family_grandfather));
 
+        // create WordAdaptor
         WordAdaptor adaptor = new WordAdaptor(this, words);
 
+        // find the list view by it's id
         ListView listView = (ListView) findViewById(R.id.list);
 
+        // set the adaptor to the list view
         listView.setAdapter(adaptor);
     }
 }

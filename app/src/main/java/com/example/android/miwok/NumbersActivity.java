@@ -13,8 +13,10 @@ public class NumbersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.word_list);
 
+        // create word ArrayList
         ArrayList<Word> words = new ArrayList<Word>();
 
+        // initialize the word ArrayList to default word, miwok word, and image id
         words.add(new Word("one", "lutti", R.drawable.number_one));
         words.add(new Word("two", "otiiko", R.drawable.number_two));
         words.add(new Word("three", "tolookosu", R.drawable.number_three));
@@ -26,10 +28,13 @@ public class NumbersActivity extends AppCompatActivity {
         words.add(new Word("nine", "wo’e", R.drawable.number_nine));
         words.add(new Word("ten", "na’aacha", R.drawable.number_ten));
 
+        // create WordAdaptor
         WordAdaptor adaptor = new WordAdaptor(this, words);
 
+        // find the list view by it's id
         ListView listView = (ListView) findViewById(R.id.list);
 
+        // set the adaptor to the list view
         listView.setAdapter(adaptor);
 
     }

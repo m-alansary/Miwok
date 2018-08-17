@@ -8,6 +8,8 @@ public class Word {
 
     private int mImageResourceID = -1;
 
+    private int mAudioResourceID;
+
 
 
     /**
@@ -15,9 +17,10 @@ public class Word {
      * @param defaultTranslation the default trnslation (english as example)
      * @param miwokTranslation the miwok Translation
      */
-    public Word(String defaultTranslation, String miwokTranslation) {
+    public Word(String defaultTranslation, String miwokTranslation, int audioResourceID) {
         mDefaultTranslation = defaultTranslation;
         mMiwokTranslation = miwokTranslation;
+        mAudioResourceID = audioResourceID;
     }
 
     /**
@@ -26,10 +29,11 @@ public class Word {
      * @param miwokTranslation the miwok Translation
      * @param imageID the image resource ID
      */
-    public Word(String defaultTranslation, String miwokTranslation, int imageID) {
+    public Word(String defaultTranslation, String miwokTranslation, int imageID, int audioResourceID) {
         mDefaultTranslation = defaultTranslation;
         mMiwokTranslation = miwokTranslation;
         mImageResourceID = imageID;
+        mAudioResourceID = audioResourceID;
     }
 
     /**
@@ -58,5 +62,22 @@ public class Word {
      */
     public boolean hasImage() {
         return mImageResourceID != -1;
+    }
+
+    /**
+     * @return the audio resource ID
+     */
+    public int getmAudioResourceID() {
+        return mAudioResourceID;
+    }
+
+    @Override
+    public String toString() {
+        return "Word{" +
+                "mDefaultTranslation='" + mDefaultTranslation + '\'' +
+                ", mMiwokTranslation='" + mMiwokTranslation + '\'' +
+                ", mImageResourceID=" + mImageResourceID +
+                ", mAudioResourceID=" + mAudioResourceID +
+                '}';
     }
 }

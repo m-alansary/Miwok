@@ -1,9 +1,12 @@
 package com.example.android.miwok;
 
+import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -13,13 +16,6 @@ import java.util.ArrayList;
 public class PhrasesActivity extends AppCompatActivity {
 
     private MediaPlayer mediaPlayer;
-
-    private MediaPlayer.OnCompletionListener mCompletionListener = new MediaPlayer.OnCompletionListener() {
-        @Override
-        public void onCompletion(MediaPlayer mediaPlayer) {
-            releaseMediaPlayer();
-        }
-    };
 
     private AudioManager mAudioManager;
 
@@ -52,10 +48,22 @@ public class PhrasesActivity extends AppCompatActivity {
         }
     };
 
+    private MediaPlayer.OnCompletionListener mCompletionListener = new MediaPlayer.OnCompletionListener() {
+        @Override
+        public void onCompletion(MediaPlayer mediaPlayer) {
+            releaseMediaPlayer();
+        }
+    };
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.word_list);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
         // create word ArrayList
         final ArrayList<Word> words = new ArrayList<Word>();
@@ -87,6 +95,8 @@ public class PhrasesActivity extends AppCompatActivity {
 
                 Word word = words.get(position);
 
+                releaseMediaPlayer();
+
                 int result = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener,
                         AudioManager.STREAM_MUSIC,
                         AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
@@ -108,6 +118,17 @@ public class PhrasesActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         releaseMediaPlayer();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     /**
